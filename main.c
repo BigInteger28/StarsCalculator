@@ -36,6 +36,8 @@ int main()
 
 		printf("Matches played: ");
 		scanf("%f", &matches);
+		printf("Score: ");
+		scanf("%f", &score);
 
 		if (placements == 'y') {
 			if (human == 'y') {
@@ -55,9 +57,6 @@ int main()
 			printf("Your own rating: ");
 			scanf("%f", &ownRating);
 		}
-
-		printf("Score: ");
-		scanf("%f", &score);
 
 		if (human == 'y' || placements != 'y') averageOpponent = sumRatingAllOpponents / matches;
 
