@@ -18,26 +18,32 @@ int main()
 		float matches;
 		float score;
 		float averageOpponent;
-		float highestRatingInList = 202; //Voorlopig is dit Amon
+		float highestRatingInList; //Voorlopig is dit Amon
+		char teams;
 		char placements;
 		char human;
 
-		printf("Placements? (y): ");
-		scanf(" %c", &placements);
-		if (placements == 'y') {
-			printf("Human? (y): ");
-			scanf(" %c", &human);
-		}
+		printf("Teams? (y): ");
+		scanf(" %c", &teams);
 
-		if (placements != 'y' || human == 'y') {
-			printf("Total sum all ratings played against: ");
-			scanf("%f", &sumRatingAllOpponents);
+		if (teams != 'y') {
+			printf("Placements? (y): ");
+			scanf(" %c", &placements);
+			if (placements == 'y') {
+				printf("Human? (y): ");
+				scanf(" %c", &human);
+			}
+
+			if (placements != 'y' || human == 'y') {
+				printf("Total sum all ratings played against: ");
+				scanf("%f", &sumRatingAllOpponents);
+			}
 		}
 
 		printf("Matches played: ");
 		scanf("%f", &matches);
 		printf("Score: ");
-		scanf("%f", &score);
+		scanf("%f", &score);       
 
 		if (placements == 'y') {
 			if (human == 'y') {
@@ -47,6 +53,8 @@ int main()
 				multiplier = 3;
 				printf("Average rating: ");
 				scanf("%f", &averageOpponent);
+                printf("Highest rating in list: ");
+		        scanf("%f", &highestRatingInList); 
 				averageOpponent = (averageOpponent + (highestRatingInList / 2)) / 2;
 				ownRating = averageOpponent;
 			}
@@ -54,11 +62,19 @@ int main()
 		else {
 			printf("Multiplier: ");
 			scanf("%f", &multiplier);
-			printf("Your own rating: ");
-			scanf("%f", &ownRating);
+			//if (teams != 'y') {
+				printf("Your own rating: ");
+				scanf("%f", &ownRating);
+			//}
 		}
 
-		if (human == 'y' || placements != 'y') averageOpponent = sumRatingAllOpponents / matches;
+		if (teams == 'y') {
+			printf("Median rating: ");
+			scanf("%f", &averageOpponent);
+			//ownRating = averageOpponent / 2;
+		}
+
+		if (teams != 'y' && (human == 'y' || placements != 'y')) averageOpponent = sumRatingAllOpponents / matches;
 
 		printf("\nAverage opponent is %.1f", averageOpponent);
 		printf("\nYour new rating is %.1f", newRating(multiplier, ownRating, averageOpponent, matches, score));
