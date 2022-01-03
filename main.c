@@ -3,7 +3,7 @@
 float newRating(float multiplier, float ownRating, float averageOpponent, float matches, float score)
 {
 	float mid = matches / ((averageOpponent / ownRating) * 2);
-	if (mid > matches * 0.6) mid = matches * 0.6;
+	if (mid > matches * 0.7) mid = matches * 0.7;
 	float abovemid = score - mid;
 	return ownRating + (abovemid * multiplier);
 }
@@ -43,18 +43,18 @@ int main()
 		printf("Matches played: ");
 		scanf("%f", &matches);
 		printf("Score: ");
-		scanf("%f", &score);       
+		scanf("%f", &score);
 
 		if (placements == 'y') {
 			if (human == 'y') {
-				multiplier = 5;
+				multiplier = 10;
 				ownRating = (sumRatingAllOpponents / matches) / 2;
 			} else {
 				multiplier = 3;
 				printf("Average rating: ");
 				scanf("%f", &averageOpponent);
                 printf("Highest rating in list: ");
-		        scanf("%f", &highestRatingInList); 
+		        scanf("%f", &highestRatingInList);
 				averageOpponent = (averageOpponent + (highestRatingInList / 2)) / 2;
 				ownRating = averageOpponent;
 			}
